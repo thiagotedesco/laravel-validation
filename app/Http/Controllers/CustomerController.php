@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\CustomerService;
 use App\Models\Customer;
+use App\Http\Requests\CustomerRequest;
 
 class CustomerController extends Controller
 {
@@ -37,10 +38,10 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\CustomerRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CustomerRequest $request)
     {
         $customer = $this->service->store($request->all());
         return redirect()->route('customers.index');
@@ -69,11 +70,11 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\CustomerRequest  $request
      * @param  int                       $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CustomerRequest $request, $id)
     {
         $customer = $this->service->update($request->all(), $id);
         return redirect()->route('customers.index');
